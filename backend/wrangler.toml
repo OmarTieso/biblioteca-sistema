@@ -1,0 +1,24 @@
+name = "biblioteca-backend"
+main = "src/index.js"
+compatibility_date = "2024-09-23"
+
+[vars]
+ENVIRONMENT = "dev"
+SENTRY_DSN = ""
+
+[[d1_databases]]
+binding = "DB"
+database_name = "biblioteca-db-dev"
+database_id = "REEMPLAZA_CON_TU_DEV_D1_ID"
+
+[env.prod]
+name = "biblioteca-backend-prod"
+
+[env.prod.vars]
+ENVIRONMENT = "prod"
+SENTRY_DSN = ""
+
+[[env.prod.d1_databases]]
+binding = "DB"
+database_name = "biblioteca-db-prod"
+database_id = "REEMPLAZA_CON_TU_PROD_D1_ID"
