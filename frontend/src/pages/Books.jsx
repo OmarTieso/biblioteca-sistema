@@ -3,12 +3,13 @@ import { api } from '../api/client.js'
 
 export default function Books() {
   const [books, setBooks] = useState([])
+  const [categories, setCategories] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [form, setForm] = useState({ title: '', author: '', isbn: '', year: '', categoryId: '' })
   const [showForm, setShowForm] = useState(false)
 
-  useEffect(() => { loadBooks() }, [])
+  useEffect(() => { loadBooks(); loadCategories() }, [])
 
   async function loadBooks() {
     try {
@@ -20,6 +21,13 @@ export default function Books() {
     } finally {
       setLoading(false)
     }
+  }
+
+  async function loadCategories() {
+    try {
+      const data = await api.categories.getAll()
+      setCategories(data)
+    } catch (err) {}
   }
 
   async function handleSubmit(e) {
@@ -60,7 +68,12 @@ export default function Books() {
           <input placeholder="Autor" value={form.author} onChange={e => setForm({ ...form, author: e.target.value })} required />
           <input placeholder="ISBN" value={form.isbn} onChange={e => setForm({ ...form, isbn: e.target.value })} />
           <input placeholder="Año" type="number" value={form.year} onChange={e => setForm({ ...form, year: e.target.value })} />
-          <input placeholder="ID Categoría" type="number" value={form.categoryId} onChange={e => setForm({ ...form, categoryId: e.target.value })} />
+          <select value={form.categoryId} onChange={e => setForm({ ...form, categoryId: e.target.value })}>
+            <option value="">-- Categoría --</option>
+            {categories.map(cat => (
+              <option key={cat.id} value={cat.id}>{cat.name}</option>
+            ))}
+          </select>
           <button type="submit">Guardar</button>
         </form>
       )}
