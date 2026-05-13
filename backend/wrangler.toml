@@ -4,7 +4,7 @@ compatibility_date = "2024-09-23"
 
 [vars]
 ENVIRONMENT = "dev"
-SENTRY_DSN = ""
+SENTRY_DSN = "https://8959f6a38edb9efc97ad4bc4472d1841@o4511384949293056.ingest.us.sentry.io/4511385010110464"
 
 [[d1_databases]]
 binding = "DB"
@@ -16,7 +16,7 @@ name = "biblioteca-backend-prod"
 
 [env.prod.vars]
 ENVIRONMENT = "prod"
-SENTRY_DSN = ""
+SENTRY_DSN = "https://8959f6a38edb9efc97ad4bc4472d1841@o4511384949293056.ingest.us.sentry.io/4511385010110464"
 
 [[env.prod.d1_databases]]
 binding = "DB"
