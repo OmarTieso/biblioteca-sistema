@@ -6,8 +6,8 @@
     "dev": "wrangler dev",
     "deploy:dev": "wrangler deploy --env dev",
     "deploy:prod": "wrangler deploy --env prod",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest --coverage",
-    "test:ci": "node --experimental-vm-modules node_modules/.bin/jest --coverage --coverageReporters=lcov --coverageReporters=cobertura --reporters=default --reporters=jest-junit"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
+    "test:ci": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage --coverageReporters=lcov --coverageReporters=cobertura --reporters=default --reporters=jest-junit"
   },
   "dependencies": {
     "hono": "^4.4.0",
@@ -20,7 +20,7 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "extensionsToTreatAsEsm": [".js"],
+
     "transform": {},
     "collectCoverageFrom": ["src/services/**/*.js"],
     "coverageDirectory": "coverage",

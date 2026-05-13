@@ -1,24 +1,25 @@
 name = "biblioteca-backend"
 main = "src/index.js"
 compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
 
 [vars]
 ENVIRONMENT = "dev"
-SENTRY_DSN = ""
+SENTRY_DSN = "https://8959f6a38edb9efc97ad4bc4472d1841@o4511384949293056.ingest.us.sentry.io/4511385010110464"
 
 [[d1_databases]]
 binding = "DB"
 database_name = "biblioteca-db-dev"
-database_id = "REEMPLAZA_CON_TU_DEV_D1_ID"
+database_id = "3b9bea4a-2b83-4b6e-84fc-e673f8aa41e8"
 
 [env.prod]
 name = "biblioteca-backend-prod"
 
 [env.prod.vars]
 ENVIRONMENT = "prod"
-SENTRY_DSN = ""
+SENTRY_DSN = "https://8959f6a38edb9efc97ad4bc4472d1841@o4511384949293056.ingest.us.sentry.io/4511385010110464"
 
 [[env.prod.d1_databases]]
 binding = "DB"
 database_name = "biblioteca-db-prod"
-database_id = "REEMPLAZA_CON_TU_PROD_D1_ID"
+database_id = "ad96f290-173b-4e12-bd74-e6dbc8e33327"
