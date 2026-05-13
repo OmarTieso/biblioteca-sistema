@@ -9,7 +9,7 @@ SENTRY_DSN = ""
 [[d1_databases]]
 binding = "DB"
 database_name = "biblioteca-db-dev"
-database_id = "REEMPLAZA_CON_TU_DEV_D1_ID"
+database_id = "3b9bea4a-2b83-4b6e-84fc-e673f8aa41e8"
 
 [env.prod]
 name = "biblioteca-backend-prod"
@@ -21,4 +21,4 @@ SENTRY_DSN = ""
 [[env.prod.d1_databases]]
 binding = "DB"
 database_name = "biblioteca-db-prod"
-database_id = "REEMPLAZA_CON_TU_PROD_D1_ID"
+database_id = "ad96f290-173b-4e12-bd74-e6dbc8e33327"
