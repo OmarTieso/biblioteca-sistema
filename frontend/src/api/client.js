@@ -29,5 +29,9 @@ export const api = {
     getByUser: (userId) => request(`/api/loans/user/${userId}`),
     create: (data) => request('/api/loans', { method: 'POST', body: JSON.stringify(data) }),
     return: (id) => request(`/api/loans/${id}/return`, { method: 'PUT' })
+  },
+  users: {
+    getAll: () => request('/api/users'),
+    create: (data) => request('/api/users', { method: 'POST', body: JSON.stringify(data) })
   }
 }
