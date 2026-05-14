@@ -3,16 +3,24 @@ import { api } from '../api/client.js'
 
 export default function Loans() {
   const [loans, setLoans] = useState([])
+  const [users, setUsers] = useState([])
+  const [availableBooks, setAvailableBooks] = useState([])
   const [loading, setLoading] = useState(true)
   const [form, setForm] = useState({ userId: '', bookId: '' })
 
-  useEffect(() => { loadLoans() }, [])
+  useEffect(() => { loadAll() }, [])
 
-  async function loadLoans() {
+  async function loadAll() {
     try {
       setLoading(true)
-      const data = await api.loans.getAll()
-      setLoans(data)
+      const [loansData, usersData, booksData] = await Promise.all([
+        api.loans.getAll(),
+        api.users.getAll(),
+        api.books.getAvailable()
+      ])
+      setLoans(loansData)
+      setUsers(usersData)
+      setAvailableBooks(booksData)
     } finally {
       setLoading(false)
     }
@@ -23,7 +31,7 @@ export default function Loans() {
     try {
       await api.loans.create(form)
       setForm({ userId: '', bookId: '' })
-      loadLoans()
+      loadAll()
     } catch (err) {
       alert(err.message)
     }
@@ -32,7 +40,7 @@ export default function Loans() {
   async function handleReturn(id) {
     try {
       await api.loans.return(id)
-      loadLoans()
+      loadAll()
     } catch (err) {
       alert(err.message)
     }
@@ -44,14 +52,24 @@ export default function Loans() {
     <div>
       <h1>Préstamos</h1>
 
-      <form onSubmit={handleSubmit} style={{ margin: '1rem 0', display: 'flex', gap: '1rem', alignItems: 'flex-end' }}>
+      <form onSubmit={handleSubmit} style={{ margin: '1rem 0', display: 'flex', gap: '1rem', alignItems: 'flex-end', flexWrap: 'wrap' }}>
         <div>
-          <label>ID Usuario</label><br />
-          <input type="number" value={form.userId} onChange={e => setForm({ ...form, userId: e.target.value })} required />
+          <label>Usuario</label><br />
+          <select value={form.userId} onChange={e => setForm({ ...form, userId: e.target.value })} required>
+            <option value="">-- Seleccionar usuario --</option>
+            {users.map(u => (
+              <option key={u.id} value={u.id}>{u.name}</option>
+            ))}
+          </select>
         </div>
         <div>
-          <label>ID Libro</label><br />
-          <input type="number" value={form.bookId} onChange={e => setForm({ ...form, bookId: e.target.value })} required />
+          <label>Libro disponible</label><br />
+          <select value={form.bookId} onChange={e => setForm({ ...form, bookId: e.target.value })} required>
+            <option value="">-- Seleccionar libro --</option>
+            {availableBooks.map(b => (
+              <option key={b.id} value={b.id}>{b.title} — {b.author}</option>
+            ))}
+          </select>
         </div>
         <button type="submit">Registrar Préstamo</button>
       </form>
