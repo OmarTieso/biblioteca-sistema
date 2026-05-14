@@ -3,6 +3,7 @@ import Navbar from './components/Navbar.jsx'
 import Books from './pages/Books.jsx'
 import Loans from './pages/Loans.jsx'
 import Categories from './pages/Categories.jsx'
+import Users from './pages/Users.jsx'
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
           <Route path="/books" element={<Books />} />
           <Route path="/loans" element={<Loans />} />
           <Route path="/categories" element={<Categories />} />
+          <Route path="/users" element={<Users />} />
         </Routes>
       </main>
     </>

@@ -31,6 +31,7 @@ export const api = {
     return: (id) => request(`/api/loans/${id}/return`, { method: 'PUT' })
   },
   users: {
-    getAll: () => request('/api/users')
+    getAll: () => request('/api/users'),
+    create: (data) => request('/api/users', { method: 'POST', body: JSON.stringify(data) })
   }
 }

@@ -7,6 +7,7 @@ export default function Navbar() {
       <Link to="/books" style={{ color: '#fff', textDecoration: 'none' }}>Libros</Link>
       <Link to="/loans" style={{ color: '#fff', textDecoration: 'none' }}>Préstamos</Link>
       <Link to="/categories" style={{ color: '#fff', textDecoration: 'none' }}>Categorías</Link>
+      <Link to="/users" style={{ color: '#fff', textDecoration: 'none' }}>Usuarios</Link>
     </nav>
   )
 }
