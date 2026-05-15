@@ -12,6 +12,10 @@ app.use('*', cors())
 
 app.get('/health', (c) => c.json({ status: 'ok', env: c.env.ENVIRONMENT }))
 
+app.get('/debug/error', () => {
+  throw new Error('Error de prueba - APM Sentry funcionando')
+})
+
 app.route('/api/books', books)
 app.route('/api/categories', categories)
 app.route('/api/loans', loans)
